@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Style : Font Style -->
+    <link rel="stylesheet" href="../assets/css/webfonts.css" media="all"/>
+    <!-- Style : Common UI Style -->
+    <link rel="stylesheet" href="../assets/css/common.css" />
+    <!-- Style : jQuery UI Style -->
+    <link rel="stylesheet" href="../assets/css/jquery-ui-1.12.1.min.css" />
+    <!-- main jQuery --> 
+    <script type="text/javascript" language="javascript" src="../assets/js/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../assets/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../assets/js/jquery.json-1.3.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../assets/js/include.js"></script>
+    <title>경찰청 프로젝트</title>
+</head>
+<script>
+    //menu 하이라이트 + 타이틀
+    var url = window.location.href;
+    var parts = url.split('/');
+    var lastSegment = "/" + parts.pop() || parts.pop();
+    $(function(){
+        $('.nav>ul>li').removeClass("on");
+        $('.nav a').each(function () {
+            var menuurl = $(this).attr("idx");
+            var href = $(".href_data").attr("w3-include-html");
+            if (menuurl.match(lastSegment)) {
+                var title = $(this).html();
+                $(".sub-title").html(title);
+                $(this).parents("li").addClass("on");
+                if ($(this).parents("li").hasClass("on")) {
+                    $(this).parents("li").addClass("on");
+                }
+            }
+        });
+        $(".nav a").click(function(){
+            var html = $(this).attr("idx");
+            $(".href_data").attr("w3-include-html",html);
+        });
+    });
+</script>
+<body>
+    <div class="master_wrap">
+        <div class="nav">
+            <h1>포렌식 수사도구<br>Administrator</h1>
+            <ul>
+                <li class="on">
+                    <a idx="../AccountList/AccountList.html">계정관리</a>
+                </li>
+                <li>
+                    <a>직원정보관리</a>
+                </li>
+                <li>
+                    <a>서버접속망(IP)관리</a>
+                </li>
+                <li>
+                    <a>프로그램관리</a>
+                </li>
+                <li>
+                    <a>프로그램사용현황</a>
+                </li>
+                <li>
+                    <a>금융사코드관리</a>
+                </li>
+                <li>
+                    <a>매뉴얼문서관리</a>
+                </li>
+            </ul>
+        </div>
+        <div class="master_container">
+            <div class="master_title">
+                <h3 class="sub-title"></h3>
+                <span>
+                    관리자님
+                    <a>로그아웃</a>
+                </span>
+            </div>
+            <div class="container">
+                <div w3-include-html="../AccountList/AccountList.html" class="href_data"></div>
+                <div class="nav_btn">
+                    <a>←</a>
+                    <a>→</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
